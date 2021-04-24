@@ -3,6 +3,11 @@ const path = require('path');
 // express exposes single function and we call it to create new exress application
 const express = require('express');
 
+// sets the port equal to the environment port variable
+// locally we will use 3000
+// on heroku process.env.PORT will be used
+const port = process.env.PORT || 3000;
+
 const hbs = require('hbs');
 
 const forecast = require('./utils/forecast');
@@ -189,9 +194,9 @@ app.get('*', (req, res) => {
 // default port for http websites is 80
 // second optional parameter is callback function which runs when server is up and running
 // process of starting server is asynchronous process
-app.listen(3000, () => {
+app.listen(port, () => {
   // this will never come up in browser
-  console.log('Server is up on port 3000'); 
+  console.log('Server is up on port ', port); 
 });
 
 // with web server node process is running as long as we will stop it
